@@ -1,4 +1,4 @@
-let SQLite = require("better-sqlite3");
+const SQLite = require("better-sqlite3");
 
 class Database {
     /**
@@ -45,7 +45,7 @@ class Database {
     get(key) {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
         if (!key || typeof key !== 'string') throw new Error("Key must be string!");
-        let data = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
+        const data = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
         try {
             data = JSON.parse(data.data)
         } catch {
@@ -62,7 +62,7 @@ class Database {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
 
         let DBdata = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key IS NOT NULL`).all();
-        let data = [];
+        const data = [];
         DBdata.forEach(r => {
             data.push({
                 key: r.key,
@@ -83,7 +83,7 @@ class Database {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
 
         /* Fetching */
-        let fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
+        const fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
         /* Setting if not exists */
         if (!fetched) this.rawDatabase.prepare(`INSERT INTO ${this.selectedTable} (key, data) VALUES (?,?)`).run(key, '{}');
         /* Encoding to set */
@@ -103,7 +103,7 @@ class Database {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
 
         /* Get from database */
-        let fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
+        const fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
         /* If not exists returns false */
         if (!fetched) return false;
         /* Deleting data */
