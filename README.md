@@ -39,9 +39,9 @@ $ npm install fast-database --save
 ## Using
 
 ```js
-let Database = require("fast-database");
+const Database = require("fast-database");
 
-let db = new Database({
+const db = new Database({
     path: "./db.sqlite", // path to database file (optional, default ./database.sqlite)
     table: "testing" // default table (optional, default master)
 });
@@ -58,13 +58,12 @@ console.log(newFoo) // bar
 
 db.table("foo");
 
-
-let operation = db.set("foo", "bar");
+const operation = db.set("foo", "bar");
 console.log(operation) // true
-let newFoo = db.get("foo");
+const newFoo = db.get("foo");
 console.log(newFoo) // bar
 
-let newFooFromOtherTable = db.table('bar').get('foo');
+const newFooFromOtherTable = db.table('bar').get('foo');
 console.log(newFooFromOtherTable); // null !
 ```
 
