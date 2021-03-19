@@ -47,11 +47,11 @@ let db = new Database({
 });
 
 /* Basic usage */
-let foo = db.get("foo");
+const foo = db.get("foo");
 console.log(foo) // null
-let operation = db.set("foo", "bar");
+const operation = db.set("foo", "bar");
 console.log(operation) // true
-let newFoo = db.get("foo");
+const newFoo = db.get("foo");
 console.log(newFoo) // bar
 
 /* Using tables */
