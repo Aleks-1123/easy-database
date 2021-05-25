@@ -14,12 +14,7 @@ class Database {
         this.rawDatabase = new SQLite(this.path);
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
     }
-
-    /**
-     * Raw Database
-     * @type {IDBDatabase} - better-sqlite3 database object
-     */
-    /**
+    /*
      * Changing a table
      * @param table
      * @returns {Database} - Database object
@@ -61,7 +56,7 @@ class Database {
     getAll() {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
 
-        let DBdata = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key IS NOT NULL`).all();
+        const DBdata = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key IS NOT NULL`).all();
         const data = [];
         DBdata.forEach(r => {
             data.push({
@@ -81,16 +76,10 @@ class Database {
      */
     set(key, dataSet) {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
-
-        /* Fetching */
         const fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
-        /* Setting if not exists */
         if (!fetched) this.rawDatabase.prepare(`INSERT INTO ${this.selectedTable} (key, data) VALUES (?,?)`).run(key, '{}');
-        /* Encoding to set */
         dataSet = JSON.stringify(dataSet);
-        /* Setting a variable */
         this.rawDatabase.prepare(`UPDATE ${this.selectedTable} SET data = ? WHERE key = ?`).run(dataSet, key);
-        /* Returing a boolean */
         return true;
     }
 
@@ -101,14 +90,9 @@ class Database {
      */
     delete(key) {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
-
-        /* Get from database */
         const fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
-        /* If not exists returns false */
-        if (!fetched) return false;
-        /* Deleting data */
+        if (!fetched) return null;
         this.rawDatabase.prepare(`DELETE FROM ${this.selectedTable} WHERE ID = ?`).run(key);
-        /* Returns true */
         return true;
     }
 }
