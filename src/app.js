@@ -92,7 +92,7 @@ class Database {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${this.selectedTable} (key, data)`).run();
         const fetched = this.rawDatabase.prepare(`SELECT * FROM ${this.selectedTable} WHERE key = ?`).get(key);
         if (!fetched) return null;
-        this.rawDatabase.prepare(`DELETE FROM ${this.selectedTable} WHERE ID = ?`).run(key);
+        this.rawDatabase.prepare(`DELETE FROM ${this.selectedTable} WHERE key = ?`).run(key);
         return true;
     }
 }
