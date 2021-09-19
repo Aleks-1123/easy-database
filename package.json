@@ -2,10 +2,10 @@
   "name": "fast-database",
   "version": "2.0.1",
   "description": "A small SQLite wrapper",
-  "main": "src/app.ts",
+  "main": "dist/app.ts",
   "types": "./typings/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

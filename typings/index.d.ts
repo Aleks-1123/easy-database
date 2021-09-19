@@ -7,6 +7,7 @@ export interface DefaultOptions {
     table: string;
 }
 
+
 export declare class Database {
     defaultOptions: DefaultOptions;
     rawDatabase: SQLite.Database;
@@ -26,4 +27,8 @@ export declare class Database {
     set(key: string, dataSet: Data): boolean;
 
     delete(key: string): boolean;
+}
+
+declare module "fast-database" {
+    export { Database };
 }

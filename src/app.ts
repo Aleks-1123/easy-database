@@ -51,7 +51,7 @@ export class Database {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${ this.selectedTable } (key, data)`).run();
 
         const DBdata = this.rawDatabase.prepare(`SELECT * FROM ${ this.selectedTable } WHERE key IS NOT NULL`).all();
-        const data = [];
+        const data: Array<Data> = [];
         DBdata.forEach(r => {
             data.push({
                 key: r.key,
@@ -76,7 +76,7 @@ export class Database {
     delete(key: string): boolean {
         this.rawDatabase.prepare(`CREATE TABLE IF NOT EXISTS ${ this.selectedTable } (key, data)`).run();
         const fetched = this.rawDatabase.prepare(`SELECT * FROM ${ this.selectedTable } WHERE key = ?`).get(key);
-        if (!fetched) return null;
+        if (!fetched) return false;
         this.rawDatabase.prepare(`DELETE FROM ${ this.selectedTable } WHERE key = ?`).run(key);
         return true;
     }
