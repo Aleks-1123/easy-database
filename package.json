@@ -1,26 +1,31 @@
 {
-    "name": "fast-database",
-    "version": "1.0.1",
-    "description": "A small SQLite wrapper",
-    "main": "src/app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Aleks-1123/fast-database.git"
-    },
-    "keywords": [
-        "db",
-        "discord-bot-db"
-    ],
-    "author": "Aleks1123",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Aleks-1123/fast-database/issues"
-    },
-    "homepage": "https://github.com/Aleks-1123/fast-database#readme",
-    "dependencies": {
-        "better-sqlite3": "^7.1.2"
-    }
+  "name": "fast-database",
+  "version": "2.0.1",
+  "description": "A small SQLite wrapper",
+  "main": "src/app.ts",
+  "types": "./typings/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aleks-1123/fast-database.git"
+  },
+  "keywords": [
+    "db",
+    "discord-bot-db"
+  ],
+  "author": "Aleks1123",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aleks-1123/fast-database/issues"
+  },
+  "homepage": "https://github.com/Aleks-1123/fast-database#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.1.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.4.0",
+    "@types/node": "^16.9.3"
+  }
 }
